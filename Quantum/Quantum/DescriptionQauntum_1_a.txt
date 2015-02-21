@@ -1,0 +1,59 @@
+1. Main dot (General)
+	Properties:
+		-1. Team
+		-2. Position
+		-3. Motion vector
+		-4 Health (3 degree) 
+		-5 Motion speed (0.5 degree)
+		-6 AutoFighting radius
+		--? Energy margin
+		
+		
+2. Secondary dot (Drone)
+	Properties:
+		-1. Team
+		-2. Position
+		-3. State:
+			- Rotation
+			- Motion to target:
+				When target reached:
+				a. To catch free
+				b. To fight and catch
+				c. To join
+			- Defending
+			- Assault
+		-4. Uptime (counter)
+		-5. Motion speed (3 degree)
+		-6. Health (0.5 degree)
+		-7. Damage
+		--?. Fire duration
+		--?. Recharge duration
+		
+3. Planet:
+	Properties: 
+		-1. State:
+			0 Free
+			1 Team A
+			2 Team B
+		-2. Position
+		-3. Time for burning
+		-4. AutoFighting radius
+		
+
+		
+		
+Features: 
+
+Main dot
+
+1. Main dot have energy margin (Manna). It can be used to hack drones or for defending
+2. Possibility of Main dot to hack  enemy drones within a certain radius with low probability
+3. Main dot have a shield with some health. Energy  used to support shield. When shield is enabled - damage is low 
+
+Secondary dot
+
+1. Secondary dot (Drone) have fire duration and recharge period
+
+Planet
+
+1. Planet have size - quantity of created drones
