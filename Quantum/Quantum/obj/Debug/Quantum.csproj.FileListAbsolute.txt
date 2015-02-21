@@ -1,9 +1,0 @@
-D:\quantum\quantum-trunk\Quantum\Quantum\bin\Debug\Quantum.exe.config
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.csprojResolveAssemblyReference.cache
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.Properties.Resources.resources
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.csproj.GenerateResource.Cache
-D:\quantum\quantum-trunk\Quantum\Quantum\bin\Debug\Quantum.exe
-D:\quantum\quantum-trunk\Quantum\Quantum\bin\Debug\Quantum.pdb
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.exe
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.pdb
-D:\quantum\quantum-trunk\Quantum\Quantum\obj\Debug\Quantum.QuantumForm.resources
