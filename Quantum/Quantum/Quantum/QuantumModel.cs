@@ -24,11 +24,11 @@ namespace Quantum.Quantum
         }
 
         public Team CurrentTeam { get; }
+        
         public Point CurrentPosition {get; set;}
-
         public Vector movingVector;
+
         public int Health { get; set; }
-        public double MotionSpeed { set; get; }
         public List<string> Drones { get; set; }
     }
 
