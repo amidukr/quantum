@@ -12,6 +12,8 @@ namespace Quantum.Quantum
     {
         readonly const int radiusMin = 10;
         readonly const int radiusMax = 13;
+
+        public General currentGeneral = new General(Team.red);
     }
 
     class General
