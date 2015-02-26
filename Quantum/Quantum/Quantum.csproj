@@ -13,6 +13,22 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +49,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>60A639B1735A79097486C067358093C7F454650A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Quantum_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,8 +75,15 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\JoinWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\JoinWindow.Designer.cs">
+      <DependentUpon>JoinWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\QuantumForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,9 +92,38 @@
     </Compile>
     <Compile Include="Form\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quantum\Controllers\SampleController.cs" />
+    <Compile Include="Quantum\Controllers\CheckWinCondition.cs" />
+    <Compile Include="Quantum\Controllers\DroneController.cs" />
+    <Compile Include="Quantum\Controllers\DroneOrderingController.cs" />
+    <Compile Include="Quantum\Controllers\DrownRespawnerController.cs" />
+    <Compile Include="Quantum\Controllers\DronsFighting.cs" />
+    <Compile Include="Quantum\Controllers\GeneralController.cs" />
+    <Compile Include="Quantum\Controllers\NetworkSync.cs" />
+    <Compile Include="Quantum\Controllers\OutpostConquestController.cs" />
+    <Compile Include="Quantum\Factory\ClientGameFactory.cs" />
+    <Compile Include="Quantum\Factory\ServerGameFactory.cs" />
+    <Compile Include="Quantum\Factory\SinglePlayerGameFactory.cs" />
+    <Compile Include="Quantum\GameEvent.cs" />
+    <Compile Include="Quantum\GameFactory.cs" />
+    <Compile Include="Quantum\GameNetwork.cs" />
+    <Compile Include="Quantum\Model\Beam.cs" />
+    <Compile Include="Quantum\Model\Drone.cs" />
+    <Compile Include="Quantum\Model\General.cs" />
+    <Compile Include="Quantum\Model\Outpost.cs" />
+    <Compile Include="Quantum\NetworkEvents\SendKeysEvent.cs" />
+    <Compile Include="Quantum\NetworkEvents\ShareGameEvent.cs" />
+    <Compile Include="Quantum\QuantumMapBuilder.cs" />
     <Compile Include="Quantum\QuantumGame.cs" />
     <Compile Include="Quantum\QuantumModel.cs" />
+    <Compile Include="Quantum\Renders\MotionBlurFilter.cs" />
+    <Compile Include="Quantum\Renders\GlobalRender.cs" />
+    <Compile Include="Quantum\Renders\WinBanner.cs" />
+    <Compile Include="Quantum\Utils\DeltaTimeCounter.cs" />
+    <Compile Include="Quantum\Utils\DroneCache.cs" />
+    <Compile Include="Quantum\Utils\GamePrints.cs" />
+    <EmbeddedResource Include="Form\JoinWindow.resx">
+      <DependentUpon>JoinWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\QuantumForm.resx">
       <DependentUpon>QuantumForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,12 +146,67 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Quantum_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blue-drone.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blue-game-over.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blue-general.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blue-outpost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\green-drone.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\green-game-over.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\green-general.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\green-outpost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\grey-outpost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
