@@ -41,6 +41,7 @@ namespace Quantum.Quantum.Controllers
                             {
 
                                 if (Vector.Subtract(enemyDrone.Position, drone.Position).Length > maxFightDistance) continue;
+                                if (enemyDrone.Health < 0) continue;
 
                                 enemyDrone.Health--;
 
