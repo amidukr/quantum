@@ -9,7 +9,7 @@ using IntPoint = System.Drawing.Point;
 namespace Quantum.Quantum.Utils
 {
 
-    delegate void GetCacheRange(List<Drone> drones);
+    delegate bool GetCacheRange(List<Drone> drones);
 
     class DronesCache {
         //ivate Dictionary<IntPoint, List<Drone>> cache = new Dictionary<IntPoint,List<Drone>>();
@@ -80,7 +80,7 @@ namespace Quantum.Quantum.Utils
             return cache[point.X, point.Y];
         }
 
-        public void findDrones(Vector fromPoint, Vector toPoint, GetCacheRange callback)
+        public bool findDrones(Vector fromPoint, Vector toPoint, GetCacheRange callback)
         {
             IntPoint iFromPoint = ToFramePoint(fromPoint);
             IntPoint iToPoint = ToFramePoint(toPoint);
@@ -101,9 +101,11 @@ namespace Quantum.Quantum.Utils
 
                     if (drones == null) continue;
 
-                    callback(drones);
+                    if (callback(drones)) return true;
                 }
             }
+
+            return false;
         }
 
 
@@ -153,7 +155,7 @@ namespace Quantum.Quantum.Utils
                 //    yield return done;
                 //}
 
-                cache[team].findDrones(fromPoint, toPoint, callback);
+                if (cache[team].findDrones(fromPoint, toPoint, callback)) return;
             }
         }
 

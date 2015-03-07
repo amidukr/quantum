@@ -49,10 +49,11 @@ namespace Quantum.Quantum.Controllers
                                 {
                                     model.Beams.Add(new Beam(drone.Position, enemyDrone.Position, general.Team));
                                 }
-                                
-                                break;
+
+                                return true;
                             }
-                        
+
+                            return false;
                         });
 
                     
