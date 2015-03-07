@@ -102,6 +102,7 @@ namespace Quantum.Quantum
             drones =>
             {
                 drawDrones(gameEvent.graphics, droneImage, drones, (densityBlock * densityBlock) / 100);
+                return false;
             }); 
         }
 
